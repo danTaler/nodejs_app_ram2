@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+
+  # Database          "Mountpoint": "/var/lib/docker/volumes/nodejs_pluralsight_db_data/_data"
+  mysql:
+    build: ./db
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      DATABASE_HOST: mysql
+    volumes:
+      - ./db/ram_app_db.sql:/docker-entrypoint-initdb.d/ram_app_db.sql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    networks:
+      - mynetwork
+  # phpmyadmin
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+    networks:
+      - mynetwork
+
+  # app:
+  #   container_name: docker-app-mysql
+  #   restart: always
+  #   #build the image from a Dockerfile:
+  #   build: ./web
+  #   depends_on:
+  #     - mysql
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     MYSQL_HOST: ${MYSQL_HOST}
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+  #     MYSQL_DATABASE: ${MYSQL_DATABASE}
+  #     MYSQL_USER: ${MYSQL_USER}
+  #     DATABASE_HOST: mysql
+  #   volumes:
+  #     - ./web:/usr/src/app
+  #   ports:
+  #     - 3000:3000
+  #   links:
+  #     - mysql
+  #   networks:
+  #     - mynetwork
+
+networks:
+  mynetwork:
+volumes:
+  db_data:
