@@ -65,29 +65,13 @@ app.use(bodyParser.urlencoded({
 //     }
 // }
 
-const {
-    host,
-    user,
-    password,
-    database,
-    db_port
-} = process.env;
-
-// const db = mysql.createConnection({
-//       host: Env.get('DB_HOST', '127.0.0.1'),
-//       port: Env.get('DB_PORT', '3306'),
-//       user: Env.get('DB_USER', 'root'),
-//       password: Env.get('DB_PASSWORD', 'mypass123'),
-//       database: Env.get('DB_DATABASE', ''),
-//       connection: Env.get('DB_CONNECTION', 'mysql'),
-//     });
 
 const db = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
+    host: process.env.MYSQL_HOST,    //docker inspect dc337bc3f9c2 | grep Gateway
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_ROOT_PASSWORD,
-    database: 'ram_app_db',  
-    port: process.env.db_port
+    database: process.env.MYSQL_DATABASE,  
+    db_port: process.env.MYSQL_db_port
 });
 
 
