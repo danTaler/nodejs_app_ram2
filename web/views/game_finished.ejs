@@ -54,7 +54,7 @@
 <body>
 
 
-
+<!--
     <script type="text/javascript">
         $(document).ready(() => {
 
@@ -62,11 +62,12 @@
             $('#btn-finish').click(() => {
 
                 var answer_1 = $("#answer_1").val();
+
                 var answer_2 = $("#answer_2").val();
                 var answer_3 = $("#answer_3").val();
                 var answer_4 = $("#answer_4").val();
 
-                console.log('card ' +answer_2);
+                console.log('answer_1 ' +answer_1);
 
                 var request = $.ajax({
                     url: '/game_finished',
@@ -109,7 +110,7 @@
         });
     </script>
 
-
+-->
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -119,17 +120,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Logo</a>
+                <a class="navbar-brand" href="#"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li class="active"><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> </a></li>
                 </ul>
             </div>
         </div>
@@ -146,7 +147,7 @@
 
                 <!-- questions-->
 
-
+            
                 <br><br>
 
 
@@ -155,17 +156,33 @@
                     <div class="panel-body">
 
 
-                        <form class="form-signin" method="POST" action="/game_finished"
-                            enctype="application/x-www-form-urlencoded">
 
+
+                    <form class="form-signin" method="POST" action="/game_finished"
+                            enctype="application/x-www-form-urlencoded">
 
                     </div>
 
-
                     <div class="form-group">
-                        <label for="formGroupExampleInput"> ? איך את/ה מרגיש מ 1-10</label>
-                        <input type="text" class="form-control" id="answer_1" name="answer_1"
-                            placeholder=" ">
+
+                            <b><label for="formGroupExampleInput">? איך אתה מרגיש מ 1 ועד 10 </label></b>
+                            <br>
+                            <select class="mdb-select md-form" id="answer_1" name="answer_1">
+                                <option value="" disabled selected> </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
+
+
+
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput2"> ? איזה רגש זה</label>
@@ -182,8 +199,6 @@
                         <input type="text" class="form-control" id="answer_4" name="answer_4"
                             placeholder="">
                     </div>
-
-
 
                     <button type="submit" class="btn btn-default" id="btn-finish" value="Submit">המשך</button>
 
@@ -217,7 +232,7 @@
     </div>
 
     <footer class="container-fluid text-center">
-        <p>Footer Text</p>
+        <p></p>
     </footer>
 
 

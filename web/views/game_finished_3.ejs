@@ -55,39 +55,6 @@
 
 
 
-    <script type="text/javascript">
-        /*
-                $(document).ready(() => {
-
-                    $('#btn-next-question').click(() => {
-
-                        answer_1 = $("#txt-answer_1").val();
-                        answer_2 = $("#txt-answer_2").val();
-                        txt_unique_id = $("#txt-unique_id").val();
-
-                        console.log(answer_1);
-                        var request = $.ajax({
-                            // url: '/ajax_game_1',
-                            url: '/game_2',
-                            type: 'POST',
-                            cache: false,
-
-                            //dataType: 'json',
-                            contentType: 'application/x-www-form-urlencoded',
-                            data: { answer_1: answer_1, answer_2: answer_2, unique_id: txt_unique_id }
-                        });
-                        request.done(function (data) {
-                            console.log('received' + data);
-                        });
-
-                        request.fail(function (jqXHR, textStatus) {
-                            // your failure code here
-                        });
-                    });
-                });
-
-        */
-    </script>
 
 
 
@@ -118,64 +85,56 @@
     <div class="container-fluid text-center">
         <div class="row content">
             <div class="col-sm-2 sidenav">
-                <div class="d-flex justify-content-center">
-                    <br><br>
-                    <h3> :שלום <br> 
-                        <% if (locals.username) { %>
-                        <%=username%>
-                        <%  } %>
-                         </h3>
-                    </div>
+
             </div>
             <div class="col-sm-8 text-left">
-
-
+                <div class="col-sm-2 sidenav">
+                    <div class="d-flex justify-content-center">
+                        <br><br>
+       
+                        </div>
+                </div>
+                <br><br>
 
                 <!-- questions-->
 
+
                 <br><br>
+
+
 
                 <div class="panel panel-default">
                     <div class="panel-body">
 
 
-                        <form class="form-signin" method="POST" action="/game_1"
-                            enctype="application/x-www-form-urlencoded">
+                        <form class="form-signin" method="POST" action="/game_finished_3"
+                        enctype="application/x-www-form-urlencoded">
 
-                           
-                            <b><label id="lbl-question" for="">? איך אתה מרגיש מ 1 ועד 10 </label></b>
-                            <br>
-                            <select class="mdb-select md-form" id="txt-answer_1" name="answer_1">
-                                <option value="" disabled selected> </option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                              </select>
-                    </div>
+                </div>
+
+                <div class="form-group">
 
 
 
 
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">  ? מתי נוח לך לשחק שוב</label>
+                    <input type="text" class="form-control" id="date" name="date"
+                        placeholder="תאריך">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" id="hour" name="hour"
+                        placeholder="שעה">
+                </div>
 
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <input type="text" id="txt-answer_2" value="" name="answer_2">
-                            <b><label id="lbl-question" for="">? איזה רגש זה</label></b>
-                        </div>
-                    </div>
 
-                    <button type="submit" class="btn btn-default" id="btn-next-question" value="Submit">המשך</button>
+                <button type="submit" class="btn btn-default" id="btn-finish" value="Submit">המשך</button>
 
-                    <input hidden type="text" id="txt-unique_id" value="">
+                <input hidden type="text" id="txt-unique_id" value="">
 
-                    </form>
+                </form>
 
 
 

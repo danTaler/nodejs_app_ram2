@@ -350,11 +350,18 @@ app.post('/game_finished', function (req, res) {
         // Neat!
     });
 
-    res.redirect('/game_finished_2');
-
+    res.render('game_finished_2');
 
 });
 
+
+app.post('/game_finished_3', function (req, res) {
+    
+    // to do:  date , hour -> save into DB
+    var date = req.body.date;
+    var hour = req.body.hour;
+
+});
 
 
 
