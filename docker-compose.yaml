@@ -18,7 +18,7 @@ services:
       - .env
     ports:
       - "3306:3306"
-    expose:
+    expose:    #don't expose !
       - "3306"
     networks:
       - mynetwork
@@ -36,27 +36,31 @@ services:
     networks:
       - mynetwork
 
-  # app:
-  #   container_name: docker-app-mysql-app
-  #   build: ./web
-  #   restart: always
-  #   working_dir: "/usr/src/app/web" 
-  #   volumes:
-  #     - ./web:/usr/src/app/web
-  #   environment:
-  #     MYSQL_HOST_IP: mysql
-  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
-  #   depends_on:
-  #     - mysql
-  #   ports:
-  #     - 3000:3000
-  #   networks:
-  #     - mynetwork
-  #   links:
-  #     - mysql
+      #build the image first!
+
+  nodejs-app:
+    container_name: docker-app-mysql-app
+    build: ./web/
+    restart: always
+    working_dir: "/usr/src/app/web" 
+    volumes:
+      - ./web:/usr/src/app/web
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+    depends_on:
+      - mysql
+    ports:
+      - 3000:3000
+    networks:
+      - mynetwork
+    #links:
+    #  - mysql
     #command: "npx pm2 start ecosystem.config.js --no-daemon" # The command docker will execute when starting the container, this command is not allowed to exit, if it does your container will stop
 
 networks:
   mynetwork:
+    driver: bridge           #private network
 volumes:
   db_data:

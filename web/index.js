@@ -78,9 +78,11 @@ const db = mysql.createConnection({
 // connect to MYSQL database
 db.connect((err) => {
     if (err) {
+        console.log(" error -> " +process.env.MYSQL_HOST);
         throw err;
     }
     console.log('Connected to MySQL database');
+
 });
 global.db = db;
 
@@ -105,7 +107,17 @@ app.post('/register', function (req, res) {
     }
     else {
         //generte unique ID:
-        const unique_id = crypto.randomBytes(16).toString("hex");
+        c = crypto.randomBytes(16).toString("hex");
+
+
+        this.salt = crypto.randomBytes(16).toString('hex'); 
+  
+        // Hashing user's salt and password with 1000 iterations, 
+        
+        this.hash = crypto.pbkdf2Sync(password, this.salt,  
+        1000, 64, `sha512`).toString(`hex`); 
+
+
 
         var username = req.body.username;
         var email = req.body.email;
